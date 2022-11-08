@@ -11,3 +11,8 @@ function checkSpam(str) {
   }
 
 }
+
+// Вызываю
+let s = false;
+
+s = checkSpam('1XbeT now');
