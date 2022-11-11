@@ -24,7 +24,7 @@ function highlight(table) {
     }
     if (!row.cells[3].hasAttribute('data-available')) {
 
-      row.setAttribute('hidden', true);
+      row.hidden = true;
     }
 
   }
