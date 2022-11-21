@@ -32,14 +32,24 @@ export default class Modal {
     document.body.append(this.content);
 
     let button = document.querySelector('.modal__close');
-    button.addEventListener("click", () =>
-      this.close());
+    button.addEventListener("click", handler2);
 
+
+
+    function handler2() {
+      modal.remove();
+      document.removeEventListener('keydown', this.handler);
+      document.body.classList.remove('is-modal-open');
+    }
+
+    let modal = document.querySelector('.modal');
     document.addEventListener('keydown', handler);
 
     function handler(event) {
       if (event.code == 'Escape') {
-        this.close();
+        modal.remove();
+        document.removeEventListener('keydown', this.handler);
+        document.body.classList.remove('is-modal-open');
       }
     }
 
@@ -77,9 +87,9 @@ export default class Modal {
 
   close() {
     document.body.classList.remove('is-modal-open');
-    let modal = document.body.querySelector('.modal');
-    modal.remove();
-    document.removeEventListener('keydown', this.handler);
+    /* let mod = document.body.querySelector('.modal');
+    mod.remove(); */
+
   }
 
 
