@@ -3,6 +3,7 @@ import createElement from '../../assets/lib/create-element.js';
 export default class Modal {
   constructor() {
   }
+  // PROPERTY CONTAINIG MARKUP
 
   content = createElement(`
     <div class="modal">
@@ -28,13 +29,13 @@ export default class Modal {
   </div>`)
 
   open() {
+    // MODAL WINDOW OPEN
     document.body.classList.add('is-modal-open');
     document.body.append(this.content);
 
+    // X BUTTON EVENT HANDLING
     let button = document.querySelector('.modal__close');
     button.addEventListener("click", handler2);
-
-
 
     function handler2() {
       modal.remove();
@@ -42,6 +43,7 @@ export default class Modal {
       document.body.classList.remove('is-modal-open');
     }
 
+    // ESC BUTTON EVENT HANDLER
     let modal = document.querySelector('.modal');
     document.addEventListener('keydown', handler);
 
@@ -56,28 +58,8 @@ export default class Modal {
   }
 
   setTitle(n) {
-    this.content = createElement(`
-    <div class="modal">
-    <div class="modal__overlay"></div>
-
-    <div class="modal__inner">
-      <div class="modal__header">
-        <!--Кнопка закрытия модального окна-->
-        <button type="button" class="modal__close">
-          <img src="/assets/images/icons/cross-icon.svg" alt="close-icon" />
-        </button>
-        <h3 class="modal__title">
-          ${n}
-        </h3>
-      </div>
-
-      <div class="modal__body">
-
-      </div>
-    </div>
-
-  </div>`);
-
+    let modalTitle = this.content.querySelector('.modal__title');
+    modalTitle.innerHTML = n;
   }
 
   setBody(m) {
@@ -87,11 +69,8 @@ export default class Modal {
 
   close() {
     document.body.classList.remove('is-modal-open');
-    /* let mod = document.body.querySelector('.modal');
-    mod.remove(); */
-
+    this.content.remove();
   }
-
 
 }
 
