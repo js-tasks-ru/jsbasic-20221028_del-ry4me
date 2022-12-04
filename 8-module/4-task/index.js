@@ -48,7 +48,7 @@ export default class Cart {
         if (this.cartItems[i].count == 0) {
           this.cartItems.splice(i, 1);
           cartItem = ''; // type change to prevent error in  onProductUpdate
-        this.onProductUpdate(cartItem);
+          this.onProductUpdate(cartItem);
 
         }
       }
