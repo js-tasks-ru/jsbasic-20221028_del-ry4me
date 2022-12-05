@@ -148,8 +148,6 @@ export default class Cart {
     }
     div.append(orderForm);
 
-
-
     modal.setTitle(title);
     modal.setBody(div);
     modal.open();
@@ -162,14 +160,12 @@ export default class Cart {
       let target = event.target;
       if (target.parentNode.className == 'cart-counter__button cart-counter__button_plus') {
         let currentProductId = target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.productId;
-        for (let i = 0; i < this.cartItems.length; i++) {
-          if (currentProductId == this.cartItems[i].product.id) {
+       // for (let i = 0; i < this.cartItems.length; i++) {
+        //  if (currentProductId == this.cartItems[i].product.id) {
             let amount = 1;
             this.updateProductCount(currentProductId, amount);
-
-
-          }
-        }
+        //  }
+       // }
       }
     });
 
@@ -177,21 +173,17 @@ export default class Cart {
       let target = event.target;
       if (target.parentNode.className == 'cart-counter__button cart-counter__button_minus') {
         let currentProductId = target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.productId;
-        for (let i = 0; i < this.cartItems.length; i++) {
-          if (currentProductId == this.cartItems[i].product.id) {
+       // for (let i = 0; i < this.cartItems.length; i++) {
+         // if (currentProductId == this.cartItems[i].product.id) {
             let amount = -1;
             this.updateProductCount(currentProductId, amount);
-
-
-          }
+        //  }
         }
-      }
+     // }
     });
 
     let form = document.forms[0];
-
     form.onsubmit = (event) => this.onSubmit(event);
-
 
   }
 
@@ -202,17 +194,19 @@ export default class Cart {
     if (this.cartItems.length === 0) {
       document.body.classList.remove('is-modal-open');
       document.querySelector('.modal').remove();
+      this.cartItems = [];
 
     }
 
     if (document.body.className == 'is-modal-open' && cartItem !== '') {
       let productId = cartItem.product.id;
+      let p = cartItem.product.price;
       let modalBody = document.querySelector('.modal__body');
       let productCount = modalBody.querySelector(`[data-product-id="${productId}"] .cart-counter__count`);
       let productPrice = modalBody.querySelector(`[data-product-id="${productId}"] .cart-product__price`);
       let infoPrice = modalBody.querySelector(`.cart-buttons__info-price`);
       let total = this.getTotalPrice();
-      let totalLocal = cartItem.product.price * cartItem.count;
+      let totalLocal = p * cartItem.count;
 
       productCount.innerHTML = cartItem.count;
       productPrice.innerHTML = `€${(totalLocal).toFixed(2)}`;
