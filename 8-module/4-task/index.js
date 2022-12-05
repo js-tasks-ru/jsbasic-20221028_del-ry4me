@@ -156,31 +156,7 @@ export default class Cart {
       this.onProductUpdate(this.cartItems[i]);
     }
 
-    document.body.addEventListener('click', (event) => {
-      let target = event.target;
-      if (target.parentNode.className == 'cart-counter__button cart-counter__button_plus') {
-        let currentProductId = target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.productId;
-       // for (let i = 0; i < this.cartItems.length; i++) {
-        //  if (currentProductId == this.cartItems[i].product.id) {
-            let amount = 1;
-            this.updateProductCount(currentProductId, amount);
-        //  }
-       // }
-      }
-    });
 
-    document.body.addEventListener('click', (event) => {
-      let target = event.target;
-      if (target.parentNode.className == 'cart-counter__button cart-counter__button_minus') {
-        let currentProductId = target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.productId;
-       // for (let i = 0; i < this.cartItems.length; i++) {
-         // if (currentProductId == this.cartItems[i].product.id) {
-            let amount = -1;
-            this.updateProductCount(currentProductId, amount);
-        //  }
-        }
-     // }
-    });
 
     let form = document.forms[0];
     form.onsubmit = (event) => this.onSubmit(event);
@@ -247,6 +223,31 @@ export default class Cart {
 
   addEventListeners() {
     this.cartIcon.elem.onclick = () => this.renderModal();
+    document.body.addEventListener('click', (event) => {
+      let target = event.target;
+      if (target.parentNode.className == 'cart-counter__button cart-counter__button_plus') {
+        let currentProductId = target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.productId;
+       // for (let i = 0; i < this.cartItems.length; i++) {
+        //  if (currentProductId == this.cartItems[i].product.id) {
+            let amount = 1;
+            this.updateProductCount(currentProductId, amount);
+        //  }
+       // }
+      }
+    });
+
+    document.body.addEventListener('click', (event) => {
+      let target = event.target;
+      if (target.parentNode.className == 'cart-counter__button cart-counter__button_minus') {
+        let currentProductId = target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.productId;
+       // for (let i = 0; i < this.cartItems.length; i++) {
+         // if (currentProductId == this.cartItems[i].product.id) {
+            let amount = -1;
+            this.updateProductCount(currentProductId, amount);
+        //  }
+        }
+     // }
+    });
   }
 }
 
