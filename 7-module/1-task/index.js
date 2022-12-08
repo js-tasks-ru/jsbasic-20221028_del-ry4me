@@ -56,7 +56,7 @@ export default class RibbonMenu {
           if (innerRibbon.scrollLeft == 0) {
             arrowLeft.classList.remove('ribbon__arrow_visible');
           }
-        } else if (target.classList.contains('ribbon__item')) { // REFERENCES HANDLING
+        } else if (target.classList.contains('ribbon__item')) { // REFERENCES HANDLING (BUBBLING EVENT)
           let ttt = new CustomEvent("ribbon-select", {
             detail: target.dataset.id,
             bubbles: true
