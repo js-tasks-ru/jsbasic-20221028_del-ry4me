@@ -54,19 +54,21 @@ export default class CartIcon {
       });
     }
 
-    let initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
+    if (!this.initialTopCoord) {
+      this.initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
+    }
 
-    if (window.pageYOffset > initialTopCoord && this.elem.offsetWidth > 0) {
+    if (window.pageYOffset > this.initialTopCoord && this.elem.offsetWidth > 0) {
       let leftIndent = '';
       // плавающая корзина
-      if ((document.documentElement.clientWidth - document.querySelector('.container').getBoundingClientRect().right - this.elem.offsetWidth) < 0) {
-        leftIndent = (document.querySelector('.container').getBoundingClientRect().right - this.elem.offsetWidth - 10) + 'px';
-      } else {
-        leftIndent = Math.min(
-          document.querySelector('.container').getBoundingClientRect().right + 20,
-          document.documentElement.clientWidth - this.elem.offsetWidth - 10
-        ) + 'px';
-      }
+      // if ((document.documentElement.clientWidth - document.querySelector('.container').getBoundingClientRect().right - this.elem.offsetWidth) < 0) {
+      //  leftIndent = (document.querySelector('.container').getBoundingClientRect().right - this.elem.offsetWidth - 10) + 'px';
+      //   } else {
+      leftIndent = Math.min(
+        document.querySelector('.container').getBoundingClientRect().right + 20,
+        document.documentElement.clientWidth - this.elem.offsetWidth - 10
+      ) + 'px';
+      //  }
 
       Object.assign(this.elem.style, {
         position: 'fixed',
@@ -75,7 +77,7 @@ export default class CartIcon {
         right: '10px',
         left: leftIndent
       });
-    } else if (window.pageYOffset <= initialTopCoord) {
+    } else if (window.pageYOffset <= this.initialTopCoord) {
       // корзина сверху
       Object.assign(this.elem.style, {
         position: '',

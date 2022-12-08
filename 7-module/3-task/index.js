@@ -13,16 +13,18 @@ export default class StepSlider {
 
   makeSlider() {
     // SLIDER INITIAL MARKUP
+    let leftPercents = 100 / (this.steps - 1) * this.value;
+    this.leftPercents = leftPercents;
     let slider = createElement(`
     <div class="slider">
 
     <!--Ползунок слайдера с активным значением-->
-    <div class="slider__thumb" style="left: 50%;">
-      <span class="slider__value">2</span>
+    <div class="slider__thumb" style="left: ${this.leftPercents}%;">
+      <span class="slider__value">${this.value}</span>
     </div>
 
     <!--Заполненная часть слайдера-->
-    <div class="slider__progress" style="width: 50%;"></div>
+    <div class="slider__progress" style="width: ${this.leftPercents}%;"></div>
 
     <!--Шаги слайдера-->
     <div class="slider__steps">
@@ -35,7 +37,7 @@ export default class StepSlider {
     let progress = slider.querySelector('.slider__progress');
     let sliderValue = slider.querySelector('.slider__value');
     let sliderSteps = slider.querySelector('.slider__steps');
-    let leftPercents = 55;
+
     let x = this.steps;
     sliderSteps.children[0].classList.add('slider__step-active');
 
